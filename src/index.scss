@@ -24,13 +24,35 @@ body {
     .grid-main {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(5, 1fr);
+        box-shadow: 0 2px 20px 0 #000;
 
         .emoji-box {
+            border: 1px dotted #fff;
             cursor: pointer;
-            transition: all 0.3s;
+
+            span {
+                transition: all 0.3s;
+            }
 
             &:hover {
-                transform: scale(1.2);
+                span {
+                    transform: scale(1.2);
+                }
+            }
+        }
+    }
+
+    .grid-aside {
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #fff;
+
+            input {
+                background-color: #211f2f;
+                border: 1px solid #666;
+                padding: 0.5rem;
             }
         }
     }

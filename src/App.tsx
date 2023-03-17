@@ -1,7 +1,13 @@
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Intro from "./Intro";
 
 function App() {
-    return <div>어서오고</div>;
+    return (
+        <Routes>
+            <Route path="/" element={<Intro />} />
+        </Routes>
+    );
 }
 
 export default App;

@@ -1,6 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
     margin: 0;
     padding: 0;
     border: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.tossface {
+    font-family: Tossface;
+}
+
+.grid-container {
+    flex-direction: row;
+    column-gap: 5rem;
+
+    .grid-main {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+
+        .emoji-box {
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+.bgColor {
+    background-color: #1e2332;
+}
+
+.btn-basic {
+    font-weight: 700;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    &:hover {
+        background-color: #eebbff;
+        border-color: #eebbff;
+    }
+}
+
+.vibrate {
+    animation: vibration 1s ease-in-out;
+}
+
+@keyframes vibration {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-2px, 2px);
+    }
+    20% {
+        transform: translate(-2px, -2px);
+    }
+    30% {
+        transform: translate(2px, 2px);
+    }
+    40% {
+        transform: translate(2px, -2px);
+    }
+    50% {
+        transform: translate(-2px, 0);
+    }
+    60% {
+        transform: translate(2px, 0);
+    }
+    70% {
+        transform: translate(0, 2px);
+    }
+    80% {
+        transform: translate(0, -2px);
+    }
+    90% {
+        transform: translate(-1px, 1px);
+    }
+    100% {
+        transform: translate(1px, -1px);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .grid-container {
+        flex-direction: column;
+        row-gap: 5rem;
+
+        & > main {
+            width: 100%;
+        }
+
+        & > aside {
+            width: 100%;
+        }
+    }
 }

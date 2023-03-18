@@ -21,9 +21,14 @@ label {
     font-family: Tossface;
 }
 
+.tossColor {
+    color: #3182f6 !important;
+}
+
 .grid-container {
     flex-direction: row;
     column-gap: 5rem;
+    padding: 10rem 3rem 3rem 3rem;
 
     .grid-main {
         grid-template-columns: repeat(5, 1fr);
@@ -120,10 +125,11 @@ label {
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 800px) {
     .grid-container {
         flex-direction: column;
         row-gap: 2rem;
+        padding: 3rem 3rem 3rem;
 
         .grid-main {
             width: 100%;

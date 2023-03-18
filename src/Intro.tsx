@@ -76,7 +76,7 @@ function Intro() {
             <div className="text-center text-white pt-10 text-4xl font-semibold ">
                 CSS Grid Viewer
             </div>
-            <section className="flex justify-between p-10 grid-container">
+            <section className="flex justify-between grid-container">
                 <MainStyled
                     className={`w-[60%] h-[500px] grid grid-main  ${
                         vibrate ? "vibrate" : ""
@@ -117,7 +117,7 @@ function Intro() {
                             onChange={handleGapChange}
                         />
                     </label>
-                    <label>
+                    <label className="tossColor">
                         Tossface
                         <input
                             type="checkbox"
@@ -131,6 +131,20 @@ function Intro() {
                     <button className="btn-basic" onClick={resetGrid}>
                         Reset grid
                     </button>
+                    <a
+                        className="text-center text-white"
+                        href="https://toss.im/tossface"
+                        target="_blank"
+                    >
+                        What is{" "}
+                        <span className="font-semibold tossColor">
+                            Tossface{" "}
+                            <img
+                                className="w-6 inline"
+                                src="tossface-loading-symbol.gif"
+                            />
+                        </span>
+                    </a>
                 </AsideStyled>
             </section>
         </div>

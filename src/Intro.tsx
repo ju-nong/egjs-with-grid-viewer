@@ -1,14 +1,25 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 import { randomEmojis } from "./utils/randomEmojis";
 
-const MainStyled = styled.main`
+interface MainProps {
+    gaps: {
+        row: string;
+        column: string;
+    };
+}
+
+const MainStyled = styled.main<MainProps>`
     border: 2px solid #eebbff;
+
+    ${(props) => css`
+        row-gap: ${props.gaps.row}px;
+        column-gap: ${props.gaps.column}px;
+    `}
 `;
 
-const AsideStyled = styled.aside`
-    border: 1px solid #fff;
-`;
+const AsideStyled = styled.aside``;
 
 function Intro() {
     const [vibrate, setVibrate] = useState(false);
@@ -16,11 +27,13 @@ function Intro() {
     const [emojis, setEmojis] = useState(randomEmojis(25));
 
     const [gaps, setGaps] = useState({
-        row: 0,
-        column: 0,
+        row: "0",
+        column: "0",
     });
 
-    function emojiReload() {
+    const [fontStyle, setFontStyle] = useState(true);
+
+    function reloadEmoji() {
         if (vibrate) {
             return;
         }
@@ -31,16 +44,22 @@ function Intro() {
         setVibrate((vibrate) => !vibrate);
     }
 
+    function resetGrid() {
+        setGaps({ row: "0", column: "0" });
+    }
+
     function handleGapChange(event: ChangeEvent<HTMLInputElement>) {
         const { target } = event;
         const { name, value } = target;
 
         setGaps((gaps) => ({
             ...gaps,
-            [name]: parseInt(value),
+            [name]: value,
         }));
+    }
 
-        console.log(name, value);
+    function handleFontStyle() {
+        setFontStyle((fontStyle) => !fontStyle);
     }
 
     useEffect(() => {
@@ -59,29 +78,31 @@ function Intro() {
             </div>
             <section className="flex justify-between p-10 grid-container">
                 <MainStyled
-                    className={`w-[60%] h-[500px] grid grid-main gap-x-${
-                        gaps.row
-                    } gap-y-${gaps.column} ${vibrate ? "vibrate" : ""}`}
+                    className={`w-[60%] h-[500px] grid grid-main  ${
+                        vibrate ? "vibrate" : ""
+                    }`}
+                    gaps={gaps}
                 >
                     {emojis.map((emoji, index) => (
                         <div
-                            className="text-center text-4xl grid place-items-center tossface emoji-box"
+                            className={`text-center text-4xl grid place-items-center emoji-box ${
+                                fontStyle ? "tossface" : ""
+                            }`}
                             key={index}
                         >
                             <span>{emoji}</span>
                         </div>
                     ))}
                 </MainStyled>
-                <AsideStyled className="w-[30%] flex flex-col gap-y-4 grid-aside">
-                    <button className="btn-basic" onClick={emojiReload}>
-                        Emoji reload
-                    </button>
+                <AsideStyled className="w-[30%] flex flex-col gap-y-4 grid-aside p-4">
                     <label>
                         Row Gap
                         <input
                             type="number"
-                            min={0}
                             name="row"
+                            min="0"
+                            max="50"
+                            value={gaps.row}
                             onChange={handleGapChange}
                         />
                     </label>
@@ -89,11 +110,27 @@ function Intro() {
                         Column Gap
                         <input
                             type="number"
-                            min={0}
                             name="column"
+                            min="0"
+                            max="50"
+                            value={gaps.column}
                             onChange={handleGapChange}
                         />
                     </label>
+                    <label>
+                        Tossface
+                        <input
+                            type="checkbox"
+                            checked={fontStyle}
+                            onChange={handleFontStyle}
+                        />
+                    </label>
+                    <button className="btn-basic" onClick={reloadEmoji}>
+                        Reload Emoji
+                    </button>
+                    <button className="btn-basic" onClick={resetGrid}>
+                        Reset grid
+                    </button>
                 </AsideStyled>
             </section>
         </div>

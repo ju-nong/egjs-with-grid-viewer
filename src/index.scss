@@ -125,6 +125,14 @@ label {
     }
 }
 
+.conveyer-container {
+    .items {
+        .item {
+            display: inline-block;
+        }
+    }
+}
+
 @media screen and (max-width: 800px) {
     .grid-container {
         flex-direction: column;

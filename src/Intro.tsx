@@ -2,6 +2,7 @@ import React, { useState, useEffect, ChangeEvent } from "react";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 import { randomEmojis } from "./utils/randomEmojis";
+import PrevBtn from "./PrevBtn";
 
 interface MainProps {
     gaps: {
@@ -147,6 +148,9 @@ function Intro() {
                     </a>
                 </AsideStyled>
             </section>
+            <span className="text-white text-center pb-2">
+                <PrevBtn />
+            </span>
         </div>
     );
 }

@@ -1,4 +1,4 @@
-# learn-egjs
+# egjs-with-grid-viewer
 
 js가 쉽다고? 누가 그래 😠
 
